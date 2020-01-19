@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ShamanKing.ru - сайт по продаже недвижимости</title>
+</head>
+<body style="margin: 0 auto;">
+	<div style="width: 10%; height: 10%; position: absolute; top: 45%; left: 45%;">
+	<canvas id="canv" width="100%" height="100%"></canvas>
+	</div>
+	<div id="loader" align="center" style="color: 'black'; font-size: 20px; width: 20%; height: 10%; position: absolute; top: 60%; left: 39%;">Загрузка сайта</div>
+	<script>
+		var canv = document.getElementById('canv');
+		var loader = document.getElementById('loader');
+		var ctx = canv.getContext('2d');
+		var h = canv.height;
+		var w = canv.width;
+		var i = 0;
+
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = 'black';
+		ctx.beginPath();
+		ctx.arc(w/2, h/2, h/2-5, 0, 5/4*Math.PI);
+		ctx.stroke();
+
+		setInterval(function(){
+			canv.style.transform = 'rotate(' + i + 'deg)';
+			i+=2; 
+			if (i==360) 
+				i = 0;
+			if (i < 180 && i % 4 == 0)
+				loader.style.color = `rgb(` + (i/2) + `, ` + (i/2) + `, ` + (i/2) + `)`;
+			if (i > 180 && i % 4 == 0) 
+				loader.style.color = `rgb(` + (180-i/2) + `, ` + (180-i/2) + `, ` + (180-i/2) + `)`;
+			if (i==120) 
+				loader.innerHTML = 'Загрузка сайта.';
+			if (i==240) 
+				loader.innerHTML = 'Загрузка сайта..';
+			if (i==0) 
+				loader.innerHTML = 'Загрузка сайта...';
+			
+			
+		}, 8);
+
+
+	</script>
+
+</body>
+</html>
